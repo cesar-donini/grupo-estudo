@@ -1,4 +1,4 @@
-package com.example.demo.dto.param;
+package com.mercado.mercado.dto.param;
 
 import javax.validation.constraints.NotNull;
 
@@ -10,9 +10,9 @@ import lombok.Data;
 public class MercadoParam {
 	
 	private String id;
-	
-	@NotNull
+
 	@NotEmpty
+	@NotNull
 	private String nome;
 	
 	private String razaoSocial;
