@@ -1,4 +1,4 @@
-package com.example.demo.dto.request;
+package com.example.demo.dto.param;
 
 import javax.validation.constraints.NotNull;
 
@@ -11,7 +11,7 @@ public class HomeParam {
 
 	@NotNull
 	@NotEmpty
-	private String name;
+	private String nome;
 	
 	private String idade;
 	
