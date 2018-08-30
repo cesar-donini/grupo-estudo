@@ -1,10 +1,10 @@
-package com.example.demo.repository;
+package com.mercado.mercado.repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import com.example.demo.dto.param.MercadoParam;
-import com.example.demo.dto.request.MercadoRequest;
+import com.mercado.mercado.dto.param.MercadoParam;
+import com.mercado.mercado.dto.request.MercadoRequest;
 
 public class MercadoRepository {
 
