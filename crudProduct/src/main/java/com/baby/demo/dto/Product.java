@@ -22,16 +22,21 @@ public class Product {
 	}
 	
 	public String removeItem(Integer id) {
-		int[] count = {-1};
-		if (this.listProduct.stream().peek(e -> count[0]++).filter(product -> product.getId().equals(id)).findFirst().orElse(null) != null) {
-			this.listProduct.remove(count[0]);
-			return "Produto deletado com sucesso.";
+		int initialSize = listProduct.size();		
+		this.listProduct.removeIf(i -> i.getId().equals(id));
+		
+		if (initialSize == listProduct.size()) {
+			return "Produto não encontrado";
 		}
-		return "Produto não encontrado";
+		
+		return "Produto deletado com sucesso.";
 	}
 	
 	public ProductRequestPost get(Integer id) {
-		return this.listProduct.stream().filter(product -> product.getId().equals(id)).findFirst().orElse(null);
+		return this.listProduct.stream()
+						.filter(product -> product.getId().equals(id))
+						.findFirst()
+						.orElse(null);
 	}
-
+	
 }

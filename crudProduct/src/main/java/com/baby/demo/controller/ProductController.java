@@ -2,6 +2,7 @@ package com.baby.demo.controller;
 
 import javax.validation.Valid;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,21 +23,21 @@ public class ProductController {
 	
 	public static Product ListProduct = new Product();
 	
-	@PostMapping("")
+	@PostMapping
 	public ResponseEntity<?> createProduct(@Valid @RequestBody ProductRequestPost productRequest) {
 		ListProduct.setProduct(productRequest);
 		return ResponseEntity.ok("Produto cadastrado com sucesso.");
 	}
 	
-	@PutMapping("")
+	@PutMapping
 	public ResponseEntity<?> editProduct(@Valid @RequestBody ProductRequestPut productRequest) {
 		ProductRequestPost updateProduct = ListProduct.get(productRequest.getId());
 		if (updateProduct != null) {
-		updateProduct.setAmount(productRequest.getAmount());
-		updateProduct.setDescription(productRequest.getDescription());
-		updateProduct.setPrice(productRequest.getPrice());
-		updateProduct.setProvider(productRequest.getProvider());
-		updateProduct.setType(productRequest.getType());
+			updateProduct.setAmount(productRequest.getAmount());
+			updateProduct.setDescription(productRequest.getDescription());
+			updateProduct.setPrice(productRequest.getPrice());
+			updateProduct.setProvider(productRequest.getProvider());
+			updateProduct.setType(productRequest.getType());
 			return ResponseEntity.ok("Produto alterado com sucesso.");
 		}
 		
@@ -54,10 +55,10 @@ public class ProductController {
 		if (productRequest != null)
 			return ResponseEntity.ok(productRequest);
 		
-		return ResponseEntity.ok("Produto não encontrado");
+		return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Produto não encontrado");
 	}
 	
-	@GetMapping("")
+	@GetMapping
 	public ResponseEntity<?> getAllProduct() {
 		return ResponseEntity.ok(ListProduct.getListProduct());
 	}
